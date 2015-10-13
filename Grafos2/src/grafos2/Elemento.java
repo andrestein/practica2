@@ -1,4 +1,4 @@
-package octographs;
+package grafos2;
 
 public class Elemento {
     private int x, y;

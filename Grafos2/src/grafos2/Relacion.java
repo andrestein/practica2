@@ -1,4 +1,4 @@
-package octographs;
+package grafos2;
 
 public class Relacion {
     //La relaci�n elemento1 apunta a elemento2

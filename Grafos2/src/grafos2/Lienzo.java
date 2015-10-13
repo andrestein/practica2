@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package octographs;
+package grafos2;
 
 import java.awt.Font;
 import java.awt.GridLayout;
