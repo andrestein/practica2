@@ -18,7 +18,7 @@ public class UI extends javax.swing.JPanel {
     public UI() {
         initComponents();
         String cabezera [] = {"propiedades","si","no-","anti-"};
-        String datos [][] = {};
+        String datos [][] = {};        
         modelo = new DefaultTableModel(datos, cabezera);
         
     }
@@ -49,22 +49,10 @@ public class UI extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
         btnMatriz = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jMA = new javax.swing.JTextArea();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jMa2 = new javax.swing.JTextArea();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jMa3 = new javax.swing.JTextArea();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        jMa5 = new javax.swing.JTextArea();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        jMa4 = new javax.swing.JTextArea();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,7 +121,7 @@ public class UI extends javax.swing.JPanel {
             }
         });
         jLayeredPane1.add(btnLimpiar);
-        btnLimpiar.setBounds(400, 10, 65, 23);
+        btnLimpiar.setBounds(505, 100, 90, 23);
 
         btnMatriz.setText("Matríces Adyacencia");
         btnMatriz.setActionCommand("btnMatriz");
@@ -143,27 +131,11 @@ public class UI extends javax.swing.JPanel {
             }
         });
         jLayeredPane1.add(btnMatriz);
-        btnMatriz.setBounds(30, 10, 140, 23);
+        btnMatriz.setBounds(20, 60, 140, 23);
 
         jLabel2.setText("MA");
         jLayeredPane1.add(jLabel2);
-        jLabel2.setBounds(40, 110, 20, 14);
-
-        jLabel3.setText("MA^2");
-        jLayeredPane1.add(jLabel3);
-        jLabel3.setBounds(160, 110, 29, 14);
-
-        jLabel4.setText("MA^3");
-        jLayeredPane1.add(jLabel4);
-        jLabel4.setBounds(280, 110, 29, 14);
-
-        jLabel5.setText("MA^4");
-        jLayeredPane1.add(jLabel5);
-        jLabel5.setBounds(410, 110, 29, 14);
-
-        jLabel6.setText("MA^5");
-        jLayeredPane1.add(jLabel6);
-        jLabel6.setBounds(540, 110, 30, 14);
+        jLabel2.setBounds(80, 130, 20, 14);
 
         PnlBotones.add(jLayeredPane1);
 
@@ -176,39 +148,7 @@ public class UI extends javax.swing.JPanel {
         jScrollPane6.setViewportView(jMA);
 
         jLayeredPane2.add(jScrollPane6);
-        jScrollPane6.setBounds(0, 10, 120, 100);
-
-        jMa2.setColumns(20);
-        jMa2.setRows(5);
-        jMa2.setToolTipText("");
-        jScrollPane11.setViewportView(jMa2);
-        jMa2.getAccessibleContext().setAccessibleName("jMa2");
-        jMa2.getAccessibleContext().setAccessibleDescription("jMa2");
-        jMa2.getAccessibleContext().setAccessibleParent(null);
-
-        jLayeredPane2.add(jScrollPane11);
-        jScrollPane11.setBounds(120, 10, 120, 100);
-
-        jMa3.setColumns(20);
-        jMa3.setRows(5);
-        jScrollPane12.setViewportView(jMa3);
-
-        jLayeredPane2.add(jScrollPane12);
-        jScrollPane12.setBounds(240, 10, 130, 100);
-
-        jMa5.setColumns(20);
-        jMa5.setRows(5);
-        jScrollPane13.setViewportView(jMa5);
-
-        jLayeredPane2.add(jScrollPane13);
-        jScrollPane13.setBounds(500, 10, 120, 100);
-
-        jMa4.setColumns(20);
-        jMa4.setRows(5);
-        jScrollPane14.setViewportView(jMa4);
-
-        jLayeredPane2.add(jScrollPane14);
-        jScrollPane14.setBounds(370, 10, 130, 100);
+        jScrollPane6.setBounds(0, 0, 190, 150);
 
         jPanel1.add(jLayeredPane2);
 
@@ -219,20 +159,92 @@ public class UI extends javax.swing.JPanel {
      
      
     private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed
-     //UI UI = new UI();
-        Proceso pro = new Proceso(lienzo1.relaciones,lienzo1.elementos);//pcc
+     // Crea las matrices de adyacencia
+        
+        //Variables
+        Proceso pro = new Proceso(lienzo1.relaciones,lienzo1.elementos);
+        int m2 [][] = new int[pro.matrizAdyacencia.length][pro.matrizAdyacencia.length];
+        int m3 [][] = new int[pro.matrizAdyacencia.length][pro.matrizAdyacencia.length];
+        int m4 [][] = new int[pro.matrizAdyacencia.length][pro.matrizAdyacencia.length];
+        int m5 [][] = new int[pro.matrizAdyacencia.length][pro.matrizAdyacencia.length];
+        // Procedimiento Matriz Adyacente
         jMA.setText("");
         jMA.setRows(lienzo1.elementos.size() + 1);
         jMA.setColumns(lienzo1.elementos.size() + 1);
 
-        for(int i = 0; i< pro.matrizAdyasencia.length;i++){
+        for(int i = 0; i< pro.matrizAdyacencia.length;i++){
             String x = "";
-            for(int j = 0; j < pro.matrizAdyasencia.length;j++){                                
-             System.out.print(pro.matrizAdyasencia[i][j]+ " ");
-             x += " " + pro.matrizAdyasencia[i][j];
+            for(int j = 0; j < pro.matrizAdyacencia.length;j++){                                
+             System.out.print(pro.matrizAdyacencia[i][j]+ " ");
+             x += " " + pro.matrizAdyacencia[i][j];
             }
             jMA.append(x + "\n");
         }
+        // Matriz adyacente^2
+        jMA.append("\n");
+        jMA.append("MA^2");
+        jMA.append("\n");
+        
+        for(int x=0;x<pro.matrizAdyacencia.length;x++){
+            String r="";
+            for(int y=0; y<pro.matrizAdyacencia.length;y++){
+                for(int m=0; m<pro.matrizAdyacencia.length;m++){
+                    m2[x][y] += pro.matrizAdyacencia[x][m]*pro.matrizAdyacencia[m][y];                    
+                }
+                r += " "+ m2[x][y];               
+            }
+            jMA.append(r+"\n");
+        }
+        
+        // Matriz adyacente^3
+        jMA.append("\n");
+        jMA.append("MA^3");
+        jMA.append("\n");
+        
+        for(int x=0;x<pro.matrizAdyacencia.length;x++){
+            String r="";
+            for(int y=0; y<pro.matrizAdyacencia.length;y++){
+                for(int m=0; m<pro.matrizAdyacencia.length;m++){
+                    m3[x][y] += m2[x][m]*pro.matrizAdyacencia[m][y];                    
+                }
+                r += " "+ m3[x][y];               
+            }
+            jMA.append(r+"\n");
+        }
+        
+        // Matriz adyacente^4
+        jMA.append("\n");
+        jMA.append("MA^4");
+        jMA.append("\n");
+        
+        for(int x=0;x<pro.matrizAdyacencia.length;x++){
+            String r="";
+            for(int y=0; y<pro.matrizAdyacencia.length;y++){
+                for(int m=0; m<pro.matrizAdyacencia.length;m++){
+                    m4[x][y] += m3[x][m]*pro.matrizAdyacencia[m][y];                    
+                }
+                r += " "+ m4[x][y];               
+            }
+            jMA.append(r+"\n");
+        }
+        
+        // Matriz adyacente^5
+        jMA.append("\n");
+        jMA.append("MA^5");
+        jMA.append("\n");
+        
+        for(int x=0;x<pro.matrizAdyacencia.length;x++){
+            String r="";
+            for(int y=0; y<pro.matrizAdyacencia.length;y++){
+                for(int m=0; m<pro.matrizAdyacencia.length;m++){
+                    m5[x][y] += m4[x][m]*pro.matrizAdyacencia[m][y];                    
+                }
+                r += " "+ m5[x][y];               
+            }
+            jMA.append(r+"\n");
+        }
+        
+        
         System.out.println("Botón matríz");
     }//GEN-LAST:event_btnMatrizActionPerformed
 
@@ -255,23 +267,11 @@ public class UI extends javax.swing.JPanel {
     private javax.swing.JButton btnMatriz;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JTextArea jMA;
-    private javax.swing.JTextArea jMa2;
-    private javax.swing.JTextArea jMa3;
-    private javax.swing.JTextArea jMa4;
-    private javax.swing.JTextArea jMa5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
-    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
