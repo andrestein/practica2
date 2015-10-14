@@ -20,7 +20,7 @@ public class UI extends javax.swing.JPanel {
         String cabezera [] = {"propiedades","si","no-","anti-"};
         String datos [][] = {};
         modelo = new DefaultTableModel(datos, cabezera);
-        jTable5.setModel(modelo);
+        
     }
     
     
@@ -45,17 +45,18 @@ public class UI extends javax.swing.JPanel {
         lienzo1 = new octographs.Lienzo();
         PnlBotones = new javax.swing.JPanel();
         btnMatriz = new javax.swing.JButton();
-        btnMatrizInverza = new javax.swing.JButton();
-        btnTablaDeOrden = new javax.swing.JButton();
-        btnConexo = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,30 +124,6 @@ public class UI extends javax.swing.JPanel {
         });
         PnlBotones.add(btnMatriz);
 
-        btnMatrizInverza.setText("Matríz Inversa");
-        btnMatrizInverza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMatrizInverzaActionPerformed(evt);
-            }
-        });
-        PnlBotones.add(btnMatrizInverza);
-
-        btnTablaDeOrden.setText("Tabla de orden");
-        btnTablaDeOrden.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTablaDeOrdenActionPerformed(evt);
-            }
-        });
-        PnlBotones.add(btnTablaDeOrden);
-
-        btnConexo.setText("Conexo");
-        btnConexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConexoActionPerformed(evt);
-            }
-        });
-        PnlBotones.add(btnConexo);
-
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,20 +149,23 @@ public class UI extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane7);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane8.setViewportView(jTextArea3);
 
-            }
-        ));
-        jScrollPane6.setViewportView(jTable5);
+        jPanel1.add(jScrollPane8);
 
-        jPanel1.add(jScrollPane6);
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jScrollPane9.setViewportView(jTextArea4);
+
+        jPanel1.add(jScrollPane9);
+
+        jTextArea5.setColumns(20);
+        jTextArea5.setRows(5);
+        jScrollPane10.setViewportView(jTextArea5);
+
+        jPanel1.add(jScrollPane10);
 
         add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
@@ -193,30 +173,6 @@ public class UI extends javax.swing.JPanel {
    
      
      
-    private void btnMatrizInverzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizInverzaActionPerformed
-   
-     
-        //UI UI = new UI();
-       Proceso pro = new Proceso(lienzo1.relaciones,lienzo1.elementos);//pcc
-              
-        jTextArea2.setText("");
-        jTextArea2.setRows(lienzo1.elementos.size() + 1);
-        jTextArea2.setColumns(lienzo1.elementos.size() + 1);
-
-        for(int i = 0; i< pro.traspuesta.length;i++){
-            String x = "";
-            for(int j = 0; j < pro.traspuesta.length;j++){                                
-             System.out.print(pro.traspuesta[i][j]+ " ");
-             x += " " + pro.traspuesta[i][j];
-            }
-            jTextArea2.append(x + "\n");
-            
-        }
-        System.out.println("Botón matríz_inversa");
-
-                                            
-    }//GEN-LAST:event_btnMatrizInverzaActionPerformed
-
     private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed
      //UI UI = new UI();
         Proceso pro = new Proceso(lienzo1.relaciones,lienzo1.elementos);//pcc
@@ -232,13 +188,13 @@ public class UI extends javax.swing.JPanel {
             }
             jTextArea1.append(x + "\n");
         }
-        System.out.println("Botón matríz");               //pcc
+        System.out.println("Botón matríz");
     }//GEN-LAST:event_btnMatrizActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         
         jTextArea1.setText("");
-        jTextArea2.setText("");
+
         
         
         for(int i = 0; i < modelo.getRowCount();i++){
@@ -247,109 +203,30 @@ public class UI extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnTablaDeOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTablaDeOrdenActionPerformed
-        Proceso pro = new Proceso(lienzo1.relaciones,lienzo1.elementos);
-        Proceso.Reflexiva reflexiva = pro.reflexividad();
-        Proceso.Simetrica simetrica = pro.simetria();
-        Proceso.Orden orden = pro.orden();
-        boolean equivalencia = pro.equivalencia();
-        boolean transitividad = pro.transitiva();
-        
-        if (reflexiva == reflexiva.REFLEXIVA){
-            String reflexivaT[] = {"REFLEXIVA","x",null,null};
-           modelo.addRow(reflexivaT);
-        }
-       
-        else if (reflexiva == reflexiva.NO_REFLEXIVA){
-           String reflexivaT[] = {"REFLEXIVA",null,"x",null};
-           modelo.addRow(reflexivaT);
-        }
-        
-        else  if (reflexiva == reflexiva.ANTI_REFLEXIVA){
-         String reflexivaT[] = {"REFLEXIVA",null,null,"x"};
-         modelo.addRow(reflexivaT);
-        }
-        
-        if (simetrica == simetrica.SIMETRICA){
-            String simetricaT[] = {"SIMETRICA","x",null,null};
-           modelo.addRow(simetricaT);
-        
-        }
-        
-        else if (simetrica == simetrica.NO_SIMETRICA){
-          String simetricaT[] = {"SIMETRICA",null,"x",null};
-           modelo.addRow(simetricaT);
-        }
-        
-        else if (simetrica == simetrica.ANTI_SIMETRICA){
-        String simetricaT[] = {"SIMETRICA",null,null,"x"};
-           modelo.addRow(simetricaT);
-        }
-        if (transitividad == true ){
-            String transitivaT[] = {"TRANSITIVA","x",null,"/////////////"};
-           modelo.addRow( transitivaT);
-        }
-        else {
-            String transitivaT [] = {"TRANSITIVA ",null,"X","/////////////"};
-           modelo.addRow( transitivaT);
-        
-        }
-        if (equivalencia == true ){
-        String equivalenciaT[] = {"EQUIVALENCIA","x",null,"/////////////"};
-           modelo.addRow( equivalenciaT);
-        }
-        else {
-            String equivalenciaT [] = {"EQUIVALENCIA",null,"X","/////////////"};
-           modelo.addRow( equivalenciaT);
-        }
-        
-        
-        if (orden == orden.ORDEN_EXTRICO){
-        String ordenT[] = {"ORDEN_EXTRICO","x",null,"/////////////"};
-           modelo.addRow( ordenT);
-        }
-        
-        if (orden == orden.ORDEN_PARCIAL){
-        String ordenT[] = {"ORDEN_PARCIAL","x",null,"/////////////"};
-           modelo.addRow( ordenT);
-        }
-        
-       else if (orden == orden.ORDEN_TOTAL){
-        String ordenT[] = {"ORDEN_TOTAL","x",null,"/////////////"};
-           modelo.addRow( ordenT);
-        }
-        
-                // TODO add your handling code here:
-    }//GEN-LAST:event_btnTablaDeOrdenActionPerformed
-
-    private void btnConexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConexoActionPerformed
-          
-          
-    }//GEN-LAST:event_btnConexoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlBotones;
-    private javax.swing.JButton btnConexo;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMatriz;
-    private javax.swing.JButton btnMatrizInverza;
-    private javax.swing.JButton btnTablaDeOrden;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
     private octographs.Lienzo lienzo1;
     // End of variables declaration//GEN-END:variables
 
