@@ -27,14 +27,10 @@ import javax.swing.JOptionPane;
  */
 public class Lienzo extends JPanel {
 
-    
-    
     public final ArrayList<Elemento> elementos = new ArrayList<>();
     public final ArrayList<Relacion> relaciones = new ArrayList<>();
-    
+
     //public Proceso pro = new Proceso(relaciones,elementos); //Fail
-    
-    
     private Elemento elementoSeleccionado = new Elemento();
     private Elemento elementoAnterior = new Elemento();
     private boolean clicked = false;
@@ -58,7 +54,7 @@ public class Lienzo extends JPanel {
     public Lienzo() {
         super();
         initialize();
-        
+
     }
 
     private void initialize() {
@@ -70,12 +66,12 @@ public class Lienzo extends JPanel {
         elementos.clear();
         this.repaint();
     }
-    
+
     @Override
     public void paintComponent(Graphics grafico) {
         super.paintComponent(grafico);
         grafico.setFont(fNormal);
-        
+
         for (Elemento elemento : elementos) {
             dibujarElemento(grafico, elemento);
         }
@@ -90,7 +86,7 @@ public class Lienzo extends JPanel {
     }
 
     private JPanel getJGraficas() {
-       
+
         if (jGraficas == null) {
             jGraficas = this;
             jGraficas.setAutoscrolls(true);
@@ -99,7 +95,6 @@ public class Lienzo extends JPanel {
             jGraficas.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseReleased(java.awt.event.MouseEvent e) {
-                    System.out.print("Clicked");
                     jS_mouseReleased(e);
                 }
 
@@ -283,11 +278,15 @@ public class Lienzo extends JPanel {
         if (e.getButton() == MouseEvent.BUTTON1) {
             if (!elementoEncima(e.getX(), e.getY())) {
                 String nombre = JOptionPane.showInputDialog("Escriba el nombre del elemento");
+
                 if (nombre != null && !nombre.equals("")) {
                     Elemento temporal = new Elemento();
+                    temporal.setNombre(nombre);
+                    if (elementos.contains(temporal)) {
+                        return;
+                    }
                     temporal.setX(e.getX() - tArco);
                     temporal.setY(e.getY() - tArco);
-                    temporal.setNombre(nombre);
 
                     elementos.add(temporal);
                     this.repaint();
@@ -327,9 +326,7 @@ public class Lienzo extends JPanel {
         clickedFlechaS = false;
         this.repaint();
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -7,19 +7,24 @@ package octographs;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
  *
  * @author audoban
  */
-public class JMain extends JFrame {
+public class JMain extends JFrame
+{
 
-    JMain() {
+    JMain()
+    {
         super();
         initialize();
     }
 
-    protected final void initialize() {
+    protected final void initialize()
+    {
         UI ui = new UI();
         this.setSize(new Dimension(800, 600));
         this.setMinimumSize(new Dimension(800, 600));
@@ -28,7 +33,20 @@ public class JMain extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
+                if ("GTK+".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                } else if ("Windows".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
         JMain contenedor = new JMain();
         contenedor.setVisible(true);
     }
