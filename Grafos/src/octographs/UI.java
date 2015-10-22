@@ -24,7 +24,8 @@ public class UI extends javax.swing.JPanel
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         lienzo = new octographs.Lienzo();
         toolBar = new javax.swing.JToolBar();
@@ -49,8 +50,10 @@ public class UI extends javax.swing.JPanel
         btnMAdyacencia.setFocusable(false);
         btnMAdyacencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMAdyacencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnMAdyacencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnMAdyacencia.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnMAdyacenciaActionPerformed(evt);
             }
         });
@@ -61,8 +64,10 @@ public class UI extends javax.swing.JPanel
         btnNumeroCaminos.setFocusable(false);
         btnNumeroCaminos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNumeroCaminos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNumeroCaminos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNumeroCaminos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNumeroCaminosActionPerformed(evt);
             }
         });
@@ -73,8 +78,10 @@ public class UI extends javax.swing.JPanel
         btnRecorridos.setFocusable(false);
         btnRecorridos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRecorridos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRecorridos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRecorridos.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnRecorridosActionPerformed(evt);
             }
         });
@@ -85,8 +92,10 @@ public class UI extends javax.swing.JPanel
         btnLimpiar.setFocusable(false);
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnLimpiarActionPerformed(evt);
             }
         });
@@ -104,17 +113,21 @@ public class UI extends javax.swing.JPanel
         fr.setVisible(true);
     }//GEN-LAST:event_btnMAdyacenciaActionPerformed
 
+    
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         lienzo.limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnNumeroCaminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumeroCaminosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNumeroCaminosActionPerformed
-
     private void btnRecorridosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecorridosActionPerformed
-        // TODO add your handling code here:
+        Proceso pr = new Proceso(lienzo.relaciones, lienzo.elementos);
+        FrameRecorrido fre = new FrameRecorrido(pr);
+        fre.setVisible(true);
     }//GEN-LAST:event_btnRecorridosActionPerformed
+
+    private void btnNumeroCaminosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNumeroCaminosActionPerformed
+    {//GEN-HEADEREND:event_btnNumeroCaminosActionPerformed
+        
+    }//GEN-LAST:event_btnNumeroCaminosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

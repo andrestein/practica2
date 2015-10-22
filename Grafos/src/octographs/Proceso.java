@@ -6,6 +6,7 @@
 package octographs;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,10 +21,10 @@ public class Proceso
 
     // aRb 
     private long[][] matrizAdyacencia = null;
-    private String[] nodos = null;
+    public String[] nodos = null;
     public final int ORDEN;
 
-    public Proceso(ArrayList<Relacion> relaciones, ArrayList<Elemento> elementos)
+    public Proceso(ArrayList<Relacion> relaciones, List<Elemento> elementos)
     {
         ORDEN = elementos.size();
         if (ORDEN == 0)
