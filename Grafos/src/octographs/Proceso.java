@@ -6,6 +6,7 @@
 package octographs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,9 +24,13 @@ public class Proceso
     private long[][] matrizAdyacencia = null;
     public String[] nodos = null;
     public final int ORDEN;
+    public final ArrayList<Elemento> elementos;
+    public final ArrayList<Relacion> relaciones;
 
-    public Proceso(ArrayList<Relacion> relaciones, List<Elemento> elementos)
+    public Proceso(ArrayList<Relacion> relaciones, ArrayList<Elemento> elementos)
     {
+        this.elementos = elementos;
+        this.relaciones = relaciones;
         ORDEN = elementos.size();
         if (ORDEN == 0)
             return;
@@ -74,5 +79,24 @@ public class Proceso
             ans = mn.clone();
         }
         return mn;
+    }
+    
+    // Un StringBuilder es como un String pero mas eficiente en las asignaciones
+    // y las concatenaciones. En esta funcion se deberan hacer muchas de ellas.
+    // Formatee cada recorrido de esta manera a-b-c-d donde a,b,c,d son nodos
+    // No es necesario añadir saltos de linea, ya se hace automaticamente.
+    // Retorne null para cuando no hayan caminos.
+    public LinkedList<StringBuilder> recorridos(Elemento nInicial, Elemento nFinal, int longitud){
+        LinkedList<StringBuilder> r = new LinkedList<>();       
+        // Debe retornar la lista con los recorridos o null
+        // el mensaje correspondiente a recorrido no disponible sera 
+        // mostrado
+        // test
+        
+        r.add(new StringBuilder("a-b-c-f"));
+        r.add(new StringBuilder("a-t-e-f"));
+        // return r;
+        
+        return null;
     }
 }

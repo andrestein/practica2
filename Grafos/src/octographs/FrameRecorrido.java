@@ -5,11 +5,21 @@
  */
 package octographs;
 
-import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.event.ListDataListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Document;
+import javax.swing.text.Style;
+import javax.swing.text.StyledDocument;
 
 /**
  *
- * @author LENOVO
+ * @author audoban
  */
 public class FrameRecorrido extends javax.swing.JFrame {
 
@@ -17,12 +27,11 @@ public class FrameRecorrido extends javax.swing.JFrame {
      * Creates new form FrameRecorrido
      */
     public FrameRecorrido(Proceso proceso) {
-        initComponents();        
+        this.proceso = proceso;
+        initComponents();
+        initItems();
     }
 
-    //variables
-    private Proceso proceso;
-    private Lienzo lienzo;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,81 +41,84 @@ public class FrameRecorrido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        cbNodoI = new javax.swing.JComboBox();
-        cbNodoF = new javax.swing.JComboBox();
+        panel = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        cmbInicial = new javax.swing.JComboBox();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        cmbFinal = new javax.swing.JComboBox();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        spinLongitud = new javax.swing.JSpinner();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        btnCalcular = new javax.swing.JButton();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textSalida = new javax.swing.JTextPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setTitle("Recorridos");
+        setMinimumSize(new java.awt.Dimension(480, 480));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setText("Nodo Inicial");
+        panel.setMaximumSize(new java.awt.Dimension(32767, 40));
+        panel.setMinimumSize(new java.awt.Dimension(305, 40));
+        panel.setName(""); // NOI18N
+        panel.setLayout(new java.awt.GridLayout(2, 4, 7, 5));
 
-        jLabel2.setText("Nodo Final");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Nodo inicial:");
+        panel.add(jLabel1);
 
-        jButton1.setText("Calcular");
+        cmbInicial.setMaximumSize(new java.awt.Dimension(32767, 21));
+        cmbInicial.setName(""); // NOI18N
+        panel.add(cmbInicial);
 
-        cbNodoI.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbNodoIItemStateChanged(evt);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Nodo final:");
+        panel.add(jLabel2);
+
+        cmbFinal.setMaximumSize(new java.awt.Dimension(32767, 21));
+        cmbFinal.setName(""); // NOI18N
+        panel.add(cmbFinal);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Longitud:");
+        panel.add(jLabel3);
+
+        spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+        panel.add(spinLongitud);
+        panel.add(filler1);
+
+        btnCalcular.setText("Calcular");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
             }
         });
+        panel.add(btnCalcular);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        getContentPane().add(panel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(jButton1)
-                .addContainerGap(171, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbNodoI, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbNodoF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(55, 55, 55))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbNodoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbNodoF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jSeparator1.setMaximumSize(new java.awt.Dimension(32767, 7));
+        jSeparator1.setName(""); // NOI18N
+        getContentPane().add(jSeparator1);
+
+        textSalida.setEditable(false);
+        jScrollPane1.setViewportView(textSalida);
+
+        getContentPane().add(jScrollPane1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbNodoIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNodoIItemStateChanged
-        
-    }//GEN-LAST:event_cbNodoIItemStateChanged
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        if (proceso == null) {
+            return;
+        }
+        int i = cmbInicial.getSelectedIndex();
+        int f = cmbFinal.getSelectedIndex();
+        int longitud = (Integer) spinLongitud.getValue();
+        List<StringBuilder> list = proceso.recorridos(proceso.elementos.get(i), proceso.elementos.get(f), longitud);
+        setRecorridos(list);
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,12 +156,42 @@ public class FrameRecorrido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbNodoF;
-    private javax.swing.JComboBox cbNodoI;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnCalcular;
+    private javax.swing.JComboBox cmbFinal;
+    private javax.swing.JComboBox cmbInicial;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel panel;
+    private javax.swing.JSpinner spinLongitud;
+    private javax.swing.JTextPane textSalida;
     // End of variables declaration//GEN-END:variables
+    private Proceso proceso;
+
+    private void initItems() {
+        ComboBoxModel model1 = new DefaultComboBoxModel(proceso.elementos.toArray());
+        ComboBoxModel model2 = new DefaultComboBoxModel(proceso.elementos.toArray());
+        cmbInicial.setModel(model1);
+        cmbFinal.setModel(model2);
+    }
+
+    private void setRecorridos(List<StringBuilder> list) {
+        try {
+            Document doc = textSalida.getDocument();
+            doc.remove(0, doc.getLength());
+            if (list == null) {
+                doc.insertString(0
+                        , "No existen recorridos de longitud: " 
+                        + (Integer)spinLongitud.getValue(), null);
+                return;
+            }
+            for (StringBuilder str : list) {
+                StringBuilder s = new StringBuilder(str);
+                s.insert(0, "* ");
+                s.append("\n");
+                doc.insertString(0, s.toString(), null);
+            }
+        } catch (BadLocationException ex) {
+            Logger.getLogger(FrameRecorrido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -24,14 +24,12 @@ public class UI extends javax.swing.JPanel
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lienzo = new octographs.Lienzo();
         toolBar = new javax.swing.JToolBar();
         btnMAdyacencia = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0));
-        btnNumeroCaminos = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0));
         btnRecorridos = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0));
@@ -50,38 +48,21 @@ public class UI extends javax.swing.JPanel
         btnMAdyacencia.setFocusable(false);
         btnMAdyacencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMAdyacencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnMAdyacencia.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnMAdyacencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMAdyacenciaActionPerformed(evt);
             }
         });
         toolBar.add(btnMAdyacencia);
         toolBar.add(filler1);
-
-        btnNumeroCaminos.setText("Numero de caminos");
-        btnNumeroCaminos.setFocusable(false);
-        btnNumeroCaminos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNumeroCaminos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNumeroCaminos.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnNumeroCaminosActionPerformed(evt);
-            }
-        });
-        toolBar.add(btnNumeroCaminos);
         toolBar.add(filler2);
 
         btnRecorridos.setText("Recorridos");
         btnRecorridos.setFocusable(false);
         btnRecorridos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRecorridos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnRecorridos.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnRecorridos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRecorridosActionPerformed(evt);
             }
         });
@@ -92,10 +73,8 @@ public class UI extends javax.swing.JPanel
         btnLimpiar.setFocusable(false);
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
             }
         });
@@ -120,20 +99,16 @@ public class UI extends javax.swing.JPanel
 
     private void btnRecorridosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecorridosActionPerformed
         Proceso pr = new Proceso(lienzo.relaciones, lienzo.elementos);
-        FrameRecorrido fre = new FrameRecorrido(pr);
-        fre.setVisible(true);
+        if (pr.ORDEN == 0) 
+            return;
+        FrameRecorrido frame = new FrameRecorrido(pr);
+        frame.setVisible(true);
     }//GEN-LAST:event_btnRecorridosActionPerformed
-
-    private void btnNumeroCaminosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNumeroCaminosActionPerformed
-    {//GEN-HEADEREND:event_btnNumeroCaminosActionPerformed
-        
-    }//GEN-LAST:event_btnNumeroCaminosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMAdyacencia;
-    private javax.swing.JButton btnNumeroCaminos;
     private javax.swing.JButton btnRecorridos;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;

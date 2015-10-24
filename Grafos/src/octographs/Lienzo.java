@@ -19,7 +19,6 @@ import java.awt.Polygon;
 import java.awt.GradientPaint;
 import java.awt.Stroke;
 import java.awt.BasicStroke;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class Lienzo extends JPanel {
 
-    public final List<Elemento> elementos = new ArrayList<>();
+    public final ArrayList<Elemento> elementos = new ArrayList<>();
     public final ArrayList<Relacion> relaciones = new ArrayList<>();
 
     //public Proceso pro = new Proceso(relaciones,elementos); //Fail
