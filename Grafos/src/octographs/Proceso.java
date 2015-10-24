@@ -69,14 +69,15 @@ public class Proceso
             return matrizAdyacencia.clone();
 
         long ans[][] = matrizAdyacencia.clone();
-        long mn[][] = new long[ORDEN][ORDEN];
+        long mn[][] = null;
 
-        for (int i = 1; i < n; i++) {
+        for (int m = 1; m < n; m++) {
+            mn = new long[ORDEN][ORDEN];
             for (int x = 0; x < ORDEN; x++)
-                for (int y = 0; y < ORDEN; y++)
-                    for (int m = 0; m < ORDEN; m++)
-                        mn[x][y] += ans[x][m] * matrizAdyacencia[m][y];
-            ans = mn.clone();
+                for (int i = 0; i < ORDEN; i++) // fila
+                    for (int j = 0; j < ORDEN; j++) // columna
+                        mn[x][i] += ans[x][j] * matrizAdyacencia[j][i];
+            ans = mn;
         }
         return mn;
     }
