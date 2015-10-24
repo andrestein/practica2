@@ -21,6 +21,7 @@ public class Proceso
     public static final int UNO = 1;
 
     // aRb 
+    private Lienzo lienzo;
     private long[][] matrizAdyacencia = null;
     public String[] nodos = null;
     public final int ORDEN;
@@ -93,11 +94,64 @@ public class Proceso
         // el mensaje correspondiente a recorrido no disponible sera 
         // mostrado
         // test
+        long [][] maElevada;
+        int indiceI = 0, indiceF=0;
+        long numeroCaminos;
+        for (Elemento ele : lienzo.elementos) {
+            if(nInicial.equals(ele)== true){
+                indiceI=lienzo.elementos.indexOf(ele);
+            }
+            if(nFinal.equals(ele) == true){
+                indiceF=lienzo.elementos.indexOf(ele);
+            }
+        }
+        maElevada = adyPotencia(longitud).clone();
+        numeroCaminos = maElevada[indiceI][indiceF];
+        int i=0;
+        int indice = 0;
         
-        r.add(new StringBuilder("a-b-c-f"));
-        r.add(new StringBuilder("a-t-e-f"));
-        // return r;
-        
-        return null;
+        if(matrizAdyacencia[indiceI][indiceF] == 1){
+            
+        }
+        while(i == numeroCaminos){
+            
+            /*for(int j=0;j<matrizAdyacencia.length;j++){
+                if(matrizAdyacencia[indiceI][j]==1){                 
+                  indice =j;
+                  if(matrizAdyacencia[j][indiceF]== 1){
+                      
+                  }
+                }
+                
+            }
+            for(int k=0;k< matrizAdyacencia.length;k++){
+                if(matrizAdyacencia[indice][k]==1){
+                  
+                    if(matrizAdyacencia[k][indiceF]== 1){
+                      
+                    }  
+                }
+            }           
+            /*
+            
+            */
+            for(int j = 0;j<matrizAdyacencia.length;j++){
+                if(matrizAdyacencia[indiceI][j]==1){
+                    
+                    for(int k=0;k<matrizAdyacencia.length;k++){
+                        if(matrizAdyacencia[j][indiceF]==1){
+                            
+                        }                     
+                    }
+                }
+            }
+            i++;
+        }
+        if(r.isEmpty() == true){    
+        return null;     
+        }
+        else{
+            return r;
+        }              
     }
 }
