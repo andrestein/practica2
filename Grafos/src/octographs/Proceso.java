@@ -93,47 +93,22 @@ public class Proceso {
         int indiceI = elementos.indexOf(nInicial);
         int indiceF = elementos.indexOf(nFinal);
         long nCaminos = mn[indiceI][indiceF];
+        ArrayList<Elemento> lista = new ArrayList<Elemento>();        
         LinkedList<StringBuilder> r = new LinkedList<>();
-
-        int i = 0;
-        int indice = 0;
-
-        if (matrizAdyacencia[indiceI][indiceF] == 1) {
-            
-        }
-        while (i == nCaminos) {
-
-            /*
-             for (int j = 0; j < matrizAdyacencia.length; j++) {
-             if (matrizAdyacencia[indiceI][j] == 1) {
-             indice = j;
-             if (matrizAdyacencia[j][indiceF] == 1) {
-
-             }
-             }
-
-             }
-             for (int k = 0; k < matrizAdyacencia.length; k++) {
-             if (matrizAdyacencia[indice][k] == 1) {
-
-             if (matrizAdyacencia[k][indiceF] == 1) {
-
-             }
-             }
-             } 
-             */
-            for (int j = 0; j < matrizAdyacencia.length; j++) {
-                if (matrizAdyacencia[indiceI][j] == 1) {
-                    
-                    for (int k = 0; k < matrizAdyacencia.length; k++) {
-                        if (matrizAdyacencia[j][indiceF] == 1) {
-
-                        }
-                    }
-                }
+              
+        lista = recorridoL1(nInicial);
+        if(longitud == 1 ){
+            if(lista.indexOf(nFinal) != -1){
+                r.add(new StringBuilder(nInicial.getNombre()+" - "+nFinal.getNombre()));                    
             }
-            i++;
+                        
         }
+        else{
+            for(int i=0;i < nCaminos ;i++){
+                
+            }
+        }
+        
         if (r.isEmpty() == true) {
             return null;
         } else {
