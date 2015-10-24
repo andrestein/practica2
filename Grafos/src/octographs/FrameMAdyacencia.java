@@ -19,11 +19,9 @@ import javax.swing.table.JTableHeader;
  *
  * @author audoban
  */
-class RowHeaderRenderer extends JButton implements ListCellRenderer
-{
+class RowHeaderRenderer extends JButton implements ListCellRenderer {
 
-    RowHeaderRenderer(JTable table)
-    {
+    RowHeaderRenderer(JTable table) {
         JTableHeader header = table.getTableHeader();
         setOpaque(true);
         setBorder(header.getBorder());
@@ -32,25 +30,23 @@ class RowHeaderRenderer extends JButton implements ListCellRenderer
         setBackground(header.getBackground());
         setBounds(header.getBounds());
         setFont(header.getFont());
+
     }
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value,
-      int index, boolean isSelected, boolean cellHasFocus)
-    {
+            int index, boolean isSelected, boolean cellHasFocus) {
         setText((value == null) ? "" : value.toString());
         return this;
     }
 }
 
-public class FrameMAdyacencia extends javax.swing.JFrame
-{
+public class FrameMAdyacencia extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameMAdyacencia
      */
-    public FrameMAdyacencia(Proceso proceso)
-    {
+    public FrameMAdyacencia(Proceso proceso) {
         this.proceso = proceso;
         initComponents();
         initTables();
@@ -65,13 +61,12 @@ public class FrameMAdyacencia extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cboxMA = new javax.swing.JComboBox();
-        jPanel1 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        cmbMA = new javax.swing.JComboBox();
+        panel0 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         spinLongitud = new javax.swing.JSpinner();
         btnCalcular = new javax.swing.JButton();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 8), new java.awt.Dimension(5, 8), new java.awt.Dimension(5, 8));
-        jSeparator1 = new javax.swing.JSeparator();
+        javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         panel = new javax.swing.JPanel();
         mA = new javax.swing.JScrollPane();
         tMA = new javax.swing.JTable();
@@ -83,7 +78,7 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         tMA4 = new javax.swing.JTable();
         mA5 = new javax.swing.JScrollPane();
         tMA5 = new javax.swing.JTable();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        javax.swing.Box.Filler filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
         setTitle("Matriz de adyacencia");
         setMinimumSize(new java.awt.Dimension(480, 240));
@@ -91,23 +86,24 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         setSize(new java.awt.Dimension(150, 150));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
-        cboxMA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Matriz de adyacencia", "Matriz de caminos de longitud 2", "Matriz de caminos de longitud 3", "Matriz de caminos de longitud 4", "Matriz de caminos de longitud 5" }));
-        cboxMA.addItemListener(new java.awt.event.ItemListener() {
+        cmbMA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Matriz de adyacencia", "Matriz de caminos de longitud 2", "Matriz de caminos de longitud 3", "Matriz de caminos de longitud 4", "Matriz de caminos de longitud 5" }));
+        cmbMA.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboxMAItemStateChanged(evt);
+                cmbMAItemStateChanged(evt);
             }
         });
-        getContentPane().add(cboxMA);
+        getContentPane().add(cmbMA);
 
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 5));
+        panel0.setLayout(new java.awt.GridLayout(1, 3, 7, 5));
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Longitud:");
-        jPanel1.add(jLabel1);
+        panel0.add(jLabel1);
 
         spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
         spinLongitud.setToolTipText("Especifica la longitud de los caminos");
         spinLongitud.setMinimumSize(new java.awt.Dimension(100, 28));
-        jPanel1.add(spinLongitud);
+        panel0.add(spinLongitud);
 
         btnCalcular.setText("Calcular");
         btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -115,10 +111,9 @@ public class FrameMAdyacencia extends javax.swing.JFrame
                 btnCalcularMouseClicked(evt);
             }
         });
-        jPanel1.add(btnCalcular);
-        jPanel1.add(filler1);
+        panel0.add(btnCalcular);
 
-        getContentPane().add(jPanel1);
+        getContentPane().add(panel0);
         getContentPane().add(jSeparator1);
 
         panel.setLayout(new java.awt.CardLayout());
@@ -211,29 +206,29 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboxMAItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboxMAItemStateChanged
+    private void cmbMAItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMAItemStateChanged
         CardLayout card = (CardLayout) (panel.getLayout());
         card.show(panel, (String) evt.getItem());
         this.setTitle((String) evt.getItem());
-    }//GEN-LAST:event_cboxMAItemStateChanged
+        spinLongitud.setValue(cmbMA.getSelectedIndex() + 1);
+    }//GEN-LAST:event_cmbMAItemStateChanged
 
     private void btnCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseClicked
         int longitud = (Integer) spinLongitud.getValue();
         CardLayout card = (CardLayout) panel.getLayout();
         final String mn = "M^" + longitud;
         this.setTitle(mn);
-        if (longitud == 1) {
-            card.first(panel);
+        if (longitud <= 5) {
+            cmbMA.setSelectedIndex(longitud - 1);
             return;
-        } else if (longitud <= 5) {
-            card.show(panel, "Matriz de caminos de longitud " + longitud);
-            return;
-        } else
-            for (Component c : panel.getComponents())
+        } else {
+            for (Component c : panel.getComponents()) {
                 if (c.getName() != null && c.getName().equals(mn)) {
                     card.show(panel, mn);
                     return;
                 }
+            }
+        }
         createTable(proceso.adyPotencia(longitud));
         card.show(panel, mn);
     }//GEN-LAST:event_btnCalcularMouseClicked
@@ -241,19 +236,19 @@ public class FrameMAdyacencia extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
+            }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(FrameMAdyacencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -266,29 +261,26 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
                 new FrameMAdyacencia(null).setVisible(true);
             }
         });
     }
 
-    private Proceso proceso;
+    private final Proceso proceso;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JComboBox cboxMA;
-    private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox cmbMA;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane mA;
     private javax.swing.JScrollPane mA2;
     private javax.swing.JScrollPane mA3;
     private javax.swing.JScrollPane mA4;
     private javax.swing.JScrollPane mA5;
     private javax.swing.JPanel panel;
+    private javax.swing.JPanel panel0;
     private javax.swing.JSpinner spinLongitud;
     private javax.swing.JTable tMA;
     private javax.swing.JTable tMA2;
@@ -297,10 +289,10 @@ public class FrameMAdyacencia extends javax.swing.JFrame
     private javax.swing.JTable tMA5;
     // End of variables declaration//GEN-END:variables
 
-    private void initTables()
-    {
-        if (proceso == null)
+    private void initTables() {
+        if (proceso == null) {
             return;
+        }
         initTable(tMA, mA, proceso.getMatrizAdyacencia());
         initTable(tMA2, mA2, proceso.adyPotencia(2));
         initTable(tMA3, mA3, proceso.adyPotencia(3));
@@ -308,10 +300,10 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         initTable(tMA5, mA5, proceso.adyPotencia(5));
     }
 
-    private void createTable(long data[][])
-    {
-        if (data == null)
+    private void createTable(long data[][]) {
+        if (data == null) {
             return;
+        }
         JTable table = new JTable();
         JScrollPane pane = new JScrollPane();
         pane.setName("M^" + (Integer) spinLongitud.getValue());
@@ -325,33 +317,30 @@ public class FrameMAdyacencia extends javax.swing.JFrame
         table.setColumnSelectionAllowed(true);
         table.setRowHeight(20);
         panel.add(pane, "M^" + (Integer) spinLongitud.getValue());
-
     }
 
-    private void initTable(JTable table, JScrollPane scroll, long data[][])
-    {
+    private void initTable(JTable table, JScrollPane scroll, long data[][]) {
         Object nodos[] = new Object[proceso.ORDEN];
         Object dataObject[][] = new Object[proceso.ORDEN][proceso.ORDEN];
         System.arraycopy(proceso.getNodos(), 0, nodos, 0, nodos.length);
-        for (int i = 0; i < proceso.ORDEN; i++)
-            for (int j = 0; j < proceso.ORDEN; j++)
+        for (int i = 0; i < proceso.ORDEN; i++) {
+            for (int j = 0; j < proceso.ORDEN; j++) {
                 dataObject[i][j] = data[i][j];
+            }
+        }
 
-        DefaultTableModel model = new DefaultTableModel(dataObject, nodos)
-        {
+        DefaultTableModel model = new DefaultTableModel(dataObject, nodos) {
             @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex)
-            {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
         };
         table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-
         table.setModel(model);
         JList rowHeader = new JList(proceso.getNodos());
         rowHeader.setCellRenderer(new RowHeaderRenderer(table));
-        rowHeader.setFixedCellWidth(50);
         rowHeader.setFixedCellHeight(20);
+        rowHeader.setFixedCellWidth(80);
         scroll.setRowHeaderView(rowHeader);
     }
 }

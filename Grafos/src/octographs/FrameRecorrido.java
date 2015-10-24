@@ -10,12 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.ListDataListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Document;
-import javax.swing.text.Style;
-import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -113,10 +109,10 @@ public class FrameRecorrido extends javax.swing.JFrame {
         if (proceso == null) {
             return;
         }
-        int i = cmbInicial.getSelectedIndex();
-        int f = cmbFinal.getSelectedIndex();
+        Elemento i = (Elemento) cmbInicial.getSelectedItem();
+        Elemento f = (Elemento) cmbFinal.getSelectedItem();
         int longitud = (Integer) spinLongitud.getValue();
-        List<StringBuilder> list = proceso.recorridos(proceso.elementos.get(i), proceso.elementos.get(f), longitud);
+        List<StringBuilder> list = proceso.recorridos(i, f, longitud);
         setRecorridos(list);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
