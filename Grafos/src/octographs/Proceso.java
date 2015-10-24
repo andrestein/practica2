@@ -18,7 +18,7 @@ public class Proceso {
 
     public static final int CERO = 0;
     public static final int UNO = 1;
-
+    
     // aRb
     private long[][] matrizAdyacencia = null;
     public String[] nodos = null;
@@ -99,7 +99,7 @@ public class Proceso {
         int indice = 0;
 
         if (matrizAdyacencia[indiceI][indiceF] == 1) {
-
+            
         }
         while (i == nCaminos) {
 
@@ -140,4 +140,18 @@ public class Proceso {
             return r;
         }
     }
+   
+    // recorridos de longitud 1
+    public ArrayList<Elemento> recorridoL1(Elemento elemento) {
+        int i = elementos.indexOf(elemento);
+        ArrayList<Elemento> lista = new ArrayList<Elemento>();
+        
+        for(int j = 0; j < ORDEN; j++) {
+            if( matrizAdyacencia[i][j] == 1 ) {
+                lista.add(elementos.get(j));
+            }
+        }
+        return lista;
+    }
+    
 }
