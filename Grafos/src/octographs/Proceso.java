@@ -61,12 +61,12 @@ public class Proceso
         return matrizAdyacencia;
     }
 
-    public long[][] adyPotencia(int n)
+    public final long[][] adyPotencia(int n)
     {
         if (n <= 0)
             return null;
         else if (n == 1)
-            return matrizAdyacencia.clone();
+            return matrizAdyacencia;
 
         long ans[][] = matrizAdyacencia.clone();
         long mn[][] = null;
