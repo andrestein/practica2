@@ -93,21 +93,45 @@ public class Proceso {
         int indiceI = elementos.indexOf(nInicial);
         int indiceF = elementos.indexOf(nFinal);
         long nCaminos = mn[indiceI][indiceF];
-        ArrayList<Elemento> lista = new ArrayList<Elemento>();        
+        long [][] mACopia = matrizAdyacencia;
+        ArrayList<Elemento> listaI = new ArrayList<Elemento>();        
+        ArrayList<Elemento> listaF = new ArrayList<Elemento>();                
+        ArrayList<Elemento> listaInter = new ArrayList<Elemento>();                
+        ArrayList<ArrayList> listaListas = new ArrayList<ArrayList>();
         LinkedList<StringBuilder> r = new LinkedList<>();
-              
-        lista = recorridoL1(nInicial);
+        listaI = recorridoL1(nInicial);
+        listaF = recorridoL1(nFinal);
+        
+        for(int i=0;i<elementos.size();i++){
+            listaListas.add(recorridoL1(elementos.get(i)));
+        }
+                
         if(longitud == 1 ){
-            if(lista.indexOf(nFinal) != -1){
+            if(listaI.indexOf(nFinal) != -1){
                 r.add(new StringBuilder(nInicial.getNombre()+" - "+nFinal.getNombre()));                    
             }
                         
         }
         else{
-            for(int i=0;i < nCaminos ;i++){
-                
+            int nI=indiceI;
+            for(int  j =0;j<mACopia.length;j++){
+                if(mACopia[nI][j] == 1){
+                    mACopia[nI][j]=0;
+                    listaInter =listaListas.get(j);                        
+                    if(listaInter.indexOf(nFinal) != -1){
+                        r.add(new StringBuilder(nInicial.getNombre()+" - "
+                                +listaInter.get(j).getNombre()+" - "+nFinal.getNombre()));
+                    }
+                    else{
+                        
+                    }
+                }
+                else{
+
+                }
             }
         }
+        
         
         if (r.isEmpty() == true) {
             return null;
