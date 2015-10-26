@@ -18,7 +18,7 @@ public class Proceso {
 
     public static final int CERO = 0;
     public static final int UNO = 1;
-    
+
     // aRb
     private long[][] matrizAdyacencia = null;
     public String[] nodos = null;
@@ -74,9 +74,11 @@ public class Proceso {
         for (int m = 1; m < n; m++) {
             mn = new long[ORDEN][ORDEN];
             for (int x = 0; x < ORDEN; x++) {
-                for (int i = 0; i < ORDEN; i++)
-                    for (int j = 0; j < ORDEN; j++)
+                for (int i = 0; i < ORDEN; i++) {
+                    for (int j = 0; j < ORDEN; j++) {
                         mn[x][i] += ans[x][j] * matrizAdyacencia[j][i];
+                    }
+                }
             }
             ans = mn;
         }
@@ -93,64 +95,54 @@ public class Proceso {
         int indiceI = elementos.indexOf(nInicial);
         int indiceF = elementos.indexOf(nFinal);
         long nCaminos = mn[indiceI][indiceF];
-        long [][] mACopia = matrizAdyacencia;
-        ArrayList<Elemento> listaI = new ArrayList<Elemento>();        
-        ArrayList<Elemento> listaF = new ArrayList<Elemento>();                
-        ArrayList<Elemento> listaInter = new ArrayList<Elemento>();                
-        ArrayList<ArrayList> listaListas = new ArrayList<ArrayList>();
+        long[][] MA = matrizAdyacencia.clone();
+        ArrayList<Elemento> listaI = new ArrayList<Elemento>();
+        ArrayList<Elemento> listaF = new ArrayList<Elemento>();
+        ArrayList<Elemento> recorrido = new ArrayList<Elemento>();
+        ArrayList<ArrayList> listasR = new ArrayList<>();
         LinkedList<StringBuilder> r = new LinkedList<>();
         listaI = recorridoL1(nInicial);
         listaF = recorridoL1(nFinal);
-        
-        for(int i=0;i<elementos.size();i++){
-            listaListas.add(recorridoL1(elementos.get(i)));
-        }
-                
-        if(longitud == 1 ){
-            if(listaI.indexOf(nFinal) != -1){
-                r.add(new StringBuilder(nInicial.getNombre()+" - "+nFinal.getNombre()));                    
-            }
-                        
-        }
-        else if(longitud == 2) {
-            int nI=indiceI;
-            for(int j = 0;j < mACopia.length; j++){
-                if(mACopia[nI][j] == 1){
-                    mACopia[nI][j]=0;
-                    listaInter =listaListas.get(j);
-                    if(listaInter.indexOf(nFinal) != -1){
-                        r.add(new StringBuilder(nInicial.getNombre()+" - "
-                                +listaInter.get(j-1).getNombre()+" - "+nFinal.getNombre()));
-                    }
-                    else{
-                        
-                    }
-                }
-                else{
 
+        
+        listasR.add(recorridoL1(elementos.get(indiceI)));
+
+        if (longitud == 1) {
+            if (listaI.indexOf(nFinal) != -1) {
+                r.add(new StringBuilder(nInicial.getNombre() + " - " + nFinal.getNombre()));
+            }
+        }else if (longitud == 2) {
+            int nI = indiceI;
+            for (int j = 0; j < ORDEN; j++) {
+                if (MA[nI][j] == 1) {
+                    //MA[nI][j] = 0;
+                    recorrido = listasR.get(j);
+                    if (recorrido.indexOf(nFinal) != -1) {
+                        r.add(new StringBuilder(nInicial.getNombre() + " - "
+                                + recorrido.get(j).getNombre() + " - " + nFinal.getNombre()));
+                    }
                 }
             }
         }
-        
-        
+
         if (r.isEmpty() == true) {
             return null;
         } else {
             return r;
         }
     }
-   
+
     // recorridos de longitud 1
     public ArrayList<Elemento> recorridoL1(Elemento elemento) {
         int i = elementos.indexOf(elemento);
         ArrayList<Elemento> lista = new ArrayList<Elemento>();
-        
-        for(int j = 0; j < ORDEN; j++) {
-            if( matrizAdyacencia[i][j] == 1 ) {
+
+        for (int j = 0; j < ORDEN; j++) {
+            if (matrizAdyacencia[i][j] == 1) {
                 lista.add(elementos.get(j));
             }
         }
         return lista;
     }
-    
+
 }
