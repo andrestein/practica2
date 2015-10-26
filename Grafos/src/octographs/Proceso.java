@@ -112,15 +112,15 @@ public class Proceso {
             }
                         
         }
-        else{
+        else if(longitud == 2) {
             int nI=indiceI;
-            for(int  j =0;j<mACopia.length;j++){
+            for(int j = 0;j < mACopia.length; j++){
                 if(mACopia[nI][j] == 1){
                     mACopia[nI][j]=0;
-                    listaInter =listaListas.get(j);                        
+                    listaInter =listaListas.get(j);
                     if(listaInter.indexOf(nFinal) != -1){
                         r.add(new StringBuilder(nInicial.getNombre()+" - "
-                                +listaInter.get(j).getNombre()+" - "+nFinal.getNombre()));
+                                +listaInter.get(j-1).getNombre()+" - "+nFinal.getNombre()));
                     }
                     else{
                         
