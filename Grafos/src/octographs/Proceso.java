@@ -30,15 +30,12 @@ public class Proceso {
         this.elementos = elementos;
         this.relaciones = relaciones;
         ORDEN = elementos.size();
-        if (ORDEN == 0) {
+        if (ORDEN == 0)
             return;
-        }
         matrizAdyacencia = new long[ORDEN][ORDEN];
-        for (int i = 0; i < ORDEN; i++) {
-            for (int j = 0; j < ORDEN; j++) {
+        for (int i = 0; i < ORDEN; i++)
+            for (int j = 0; j < ORDEN; j++)
                 matrizAdyacencia[i][j] = CERO;
-            }
-        }
 
         for (Relacion x : relaciones) {
             int aR = elementos.indexOf(x.getElemento1());
@@ -48,9 +45,8 @@ public class Proceso {
 
         nodos = new String[ORDEN];
         int i = 0;
-        for (Elemento e : elementos) {
+        for (Elemento e : elementos)
             nodos[i++] = e.getNombre();
-        }
     }
 
     public final String[] getNodos() {
@@ -62,24 +58,20 @@ public class Proceso {
     }
 
     public final long[][] adyPotencia(int n) {
-        if (n <= 0) {
+        if (n <= 0)
             return null;
-        } else if (n == 1) {
+        else if (n == 1)
             return matrizAdyacencia;
-        }
 
         long ans[][] = matrizAdyacencia.clone();
         long mn[][] = null;
 
         for (int m = 1; m < n; m++) {
             mn = new long[ORDEN][ORDEN];
-            for (int x = 0; x < ORDEN; x++) {
-                for (int i = 0; i < ORDEN; i++) {
-                    for (int j = 0; j < ORDEN; j++) {
+            for (int x = 0; x < ORDEN; x++)
+                for (int i = 0; i < ORDEN; i++)
+                    for (int j = 0; j < ORDEN; j++)
                         mn[x][i] += ans[x][j] * matrizAdyacencia[j][i];
-                    }
-                }
-            }
             ans = mn;
         }
         return mn;
@@ -91,112 +83,97 @@ public class Proceso {
     // No es necesario añadir saltos de linea, ya se hace automaticamente.
     // Retorne null para cuando no hayan caminos.
     public LinkedList<String> recorridos(Elemento nInicial, Elemento nFinal, int longitud) {
-        
+
         LinkedList<String> r = new LinkedList<>();
         if (longitud == 1) {
-            for(int i = 0; i < relaciones.size(); i++){
-                for(int j = 0; j < relaciones.size(); j++){            
-                    if(relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal)){
+            for (int i = 0; i < relaciones.size(); i++)
+                for (int j = 0; j < relaciones.size(); j++)
+                    if (relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal))
                         r.add(nInicial.getNombre() + " - "
-                                + nFinal.getNombre());
-                    }                
-                }            
-            }
-        }else if (longitud == 2) {
-            for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ){
-                    for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2()) 
-                                && relacion2.getElemento2().equals(nFinal) ) 
+                            + nFinal.getNombre());
+        } else if (longitud == 2) {
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial))
+                    
+                    for (Relacion relacion2 : relaciones)
+                        if (relacion2.getElemento1().equals(relacion1.getElemento2())
+                            && relacion2.getElemento2().equals(nFinal)) 
                         {
                             String str = nInicial + " - "
-                                    + relacion1.getElemento2() + " - "
-                                    + relacion2.getElemento2();
+                                + relacion1.getElemento2() + " - "
+                                + relacion2.getElemento2();
                             r.add(str);
                         }
-                    }
-                }
-            }
-        }else if(longitud == 3) {
-            for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ) {
-                    for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
-                            for(Relacion relacion3 : relaciones){
-                                if(relacion3.getElemento1().equals(relacion2.getElemento2()) 
-                                        && relacion3.getElemento2().equals(nFinal)){
-                                    String str = nInicial + " - " 
-                                            + relacion1.getElemento2() + " - "
-                                            + relacion2.getElemento2() + " - "
-                                            + relacion3.getElemento2();
+
+        } else if (longitud == 3) {
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial))
+                    
+                    for (Relacion relacion2 : relaciones)
+                        if (relacion2.getElemento1().equals(relacion1.getElemento2()))
+                            
+                            for (Relacion relacion3 : relaciones)
+                                if (relacion3.getElemento1().equals(relacion2.getElemento2())
+                                    && relacion3.getElemento2().equals(nFinal)) 
+                                {
+                                    String str = nInicial + " - "
+                                        + relacion1.getElemento2() + " - "
+                                        + relacion2.getElemento2() + " - "
+                                        + relacion3.getElemento2();
                                     r.add(str);
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        }else if(longitud == 4) {
-            for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ) {
-                    for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
-                            for(Relacion relacion3 : relaciones){
-                                if(relacion3.getElemento1().equals(relacion2.getElemento2())) {
-                                    for(Relacion relacion4: relaciones ) {
-                                        if(relacion4.getElemento1().equals(relacion3.getElemento2()) 
-                                        && relacion4.getElemento2().equals(nFinal)) {
-                                        String str = nInicial + " - "                                                
+
+        } else if (longitud == 4) {
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial))
+                    
+                    for (Relacion relacion2 : relaciones)
+                        if (relacion2.getElemento1().equals(relacion1.getElemento2()))
+                            
+                            for (Relacion relacion3 : relaciones)
+                                if (relacion3.getElemento1().equals(relacion2.getElemento2()))
+                                    
+                                    for (Relacion relacion4 : relaciones)
+                                        if (relacion4.getElemento1().equals(relacion3.getElemento2())
+                                            && relacion4.getElemento2().equals(nFinal)) 
+                                        {
+                                            String str = nInicial + " - "
                                                 + relacion1.getElemento2() + " - "
                                                 + relacion2.getElemento2() + " - "
                                                 + relacion3.getElemento2() + " - "
                                                 + relacion4.getElemento2();
-                                            r.add(str); 
+                                            r.add(str);
                                         }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }else if(longitud == 5){
-            for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ) {
-                    for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2())) {
-                            for(Relacion relacion3 : relaciones){
-                                if(relacion3.getElemento1().equals(relacion2.getElemento2())) {
-                                    for(Relacion relacion4 : relaciones){
-                                        if(relacion4.getElemento1().equals(relacion3.getElemento2())){
-                                            for(Relacion relacion5 : relaciones){
-                                                if(relacion5.getElemento1().equals(relacion4.getElemento2()) 
-                                                        && relacion5.getElemento2().equals(nFinal)) {
-                                                    String str = nInicial + " - " 
-                                                            + relacion1.getElemento2() + " - "
-                                                            + relacion2.getElemento2() + " - "
-                                                            + relacion3.getElemento2() + " - "
-                                                            + relacion4.getElemento2() + " - "
-                                                            + relacion5.getElemento2();
-                                                    r.add(str); 
+        } else if (longitud == 5)
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial))
+                    
+                    for (Relacion relacion2 : relaciones)
+                        if (relacion2.getElemento1().equals(relacion1.getElemento2()))
+                            
+                            for (Relacion relacion3 : relaciones)
+                                if (relacion3.getElemento1().equals(relacion2.getElemento2()))
+                                    
+                                    for (Relacion relacion4 : relaciones)
+                                        if (relacion4.getElemento1().equals(relacion3.getElemento2()))
+                                            
+                                            for (Relacion relacion5 : relaciones)
+                                                if (relacion5.getElemento1().equals(relacion4.getElemento2())
+                                                    && relacion5.getElemento2().equals(nFinal)) 
+                                                {
+                                                    String str = nInicial + " - "
+                                                        + relacion1.getElemento2() + " - "
+                                                        + relacion2.getElemento2() + " - "
+                                                        + relacion3.getElemento2() + " - "
+                                                        + relacion4.getElemento2() + " - "
+                                                        + relacion5.getElemento2();
+                                                    r.add(str);
                                                 }
-                                            }
-                                        }
-                                    }                                
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
-        
-        if (r.isEmpty() == true) {
+        if (r.isEmpty() == true)
             return null;
-        } else {
+        else
             return r;
-        }
     }
 
     // recorridos de longitud 1
@@ -204,11 +181,9 @@ public class Proceso {
         int i = elementos.indexOf(elemento);
         ArrayList<Elemento> lista = new ArrayList<>();
 
-        for (int j = 0; j < ORDEN; j++) {
-            if (matrizAdyacencia[i][j] == 1) {
+        for (int j = 0; j < ORDEN; j++)
+            if (matrizAdyacencia[i][j] == 1)
                 lista.add(elementos.get(j));
-            }
-        }
         return lista;
     }
 }

@@ -100,7 +100,7 @@ public class FrameMAdyacencia extends javax.swing.JFrame {
         jLabel1.setText("Longitud:");
         panel0.add(jLabel1);
 
-        spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+        spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
         spinLongitud.setToolTipText("Especifica la longitud de los caminos");
         spinLongitud.setMinimumSize(new java.awt.Dimension(100, 28));
         panel0.add(spinLongitud);
