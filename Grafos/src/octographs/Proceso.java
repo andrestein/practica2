@@ -94,21 +94,22 @@ public class Proceso {
         
         LinkedList<String> r = new LinkedList<>();
         if (longitud == 1) {
-            for(int i =0; i < relaciones.size();i++){
-                for(int j =0; j < relaciones.size();j++){            
-                    if( relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal)){
-                        r.add(nInicial.getNombre()+" - "+ nFinal.getNombre());
+            for(int i = 0; i < relaciones.size(); i++){
+                for(int j = 0; j < relaciones.size(); j++){            
+                    if(relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal)){
+                        r.add(nInicial.getNombre() + " - "
+                                + nFinal.getNombre());
                     }                
                 }            
             }
         }else if (longitud == 2) {
             for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ) {
+                if( relacion1.getElemento1().equals(nInicial) ){
                     for(Relacion relacion2: relaciones ) {
                         if( relacion2.getElemento1().equals(relacion1.getElemento2()) 
                                 && relacion2.getElemento2().equals(nFinal) ) 
                         {
-                            String str = nInicial + " - " 
+                            String str = nInicial + " - "
                                     + relacion1.getElemento2() + " - "
                                     + relacion2.getElemento2();
                             r.add(str);
@@ -124,11 +125,11 @@ public class Proceso {
                             for(Relacion relacion3 : relaciones){
                                 if(relacion3.getElemento1().equals(relacion2.getElemento2()) 
                                         && relacion3.getElemento2().equals(nFinal)){
-                                   String str = nInicial + " - " 
-                                    + relacion1.getElemento2() + " - "
-                                    + relacion2.getElemento2() + " - "
-                                    + relacion3.getElemento2();
-                                    r.add(str); 
+                                    String str = nInicial + " - " 
+                                            + relacion1.getElemento2() + " - "
+                                            + relacion2.getElemento2() + " - "
+                                            + relacion3.getElemento2();
+                                    r.add(str);
                                 }
                             }
                         }
@@ -145,34 +146,38 @@ public class Proceso {
                                     for(Relacion relacion4: relaciones ) {
                                         if(relacion4.getElemento1().equals(relacion3.getElemento2()) 
                                         && relacion4.getElemento2().equals(nFinal)) {
-                                        String str = nInicial + " - " 
-                                            + relacion1.getElemento2() + " - "
-                                            + relacion2.getElemento2() + " - "
-                                            + relacion3.getElemento2() + " - "
-                                            + relacion4.getElemento2();
+                                        String str = nInicial + " - "                                                
+                                                + relacion1.getElemento2() + " - "
+                                                + relacion2.getElemento2() + " - "
+                                                + relacion3.getElemento2() + " - "
+                                                + relacion4.getElemento2();
                                             r.add(str); 
                                         }
                                     }
-        }else if(longitud == 4){
-            
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }else if(longitud == 5){
             for(Relacion relacion1: relaciones) {
                 if( relacion1.getElemento1().equals(nInicial) ) {
                     for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
+                        if( relacion2.getElemento1().equals(relacion1.getElemento2())) {
                             for(Relacion relacion3 : relaciones){
-                                if(relacion3.getElemento1().equals(relacion2.getElemento2())){
+                                if(relacion3.getElemento1().equals(relacion2.getElemento2())) {
                                     for(Relacion relacion4 : relaciones){
                                         if(relacion4.getElemento1().equals(relacion3.getElemento2())){
                                             for(Relacion relacion5 : relaciones){
-                                                if(relacion5.getElemento1().equals(relacion3.getElemento2()) 
-                                                        && relacion5.equals(nFinal)){
+                                                if(relacion5.getElemento1().equals(relacion4.getElemento2()) 
+                                                        && relacion5.getElemento2().equals(nFinal)) {
                                                     String str = nInicial + " - " 
-                                                    + relacion1.getElemento2() + " - "
-                                                    + relacion2.getElemento2() + " - "
-                                                    + relacion3.getElemento2() + " - "
-                                                    + relacion4.getElemento2() + " - "
-                                                    + relacion5.getElemento2() + " - ";
+                                                            + relacion1.getElemento2() + " - "
+                                                            + relacion2.getElemento2() + " - "
+                                                            + relacion3.getElemento2() + " - "
+                                                            + relacion4.getElemento2() + " - "
+                                                            + relacion5.getElemento2();
                                                     r.add(str); 
                                                 }
                                             }
