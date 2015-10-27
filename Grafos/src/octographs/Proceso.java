@@ -138,6 +138,37 @@ public class Proceso {
                     }
                 }
             }
+        }else if(longitud == 4){
+            
+        }else if(longitud == 5){
+            for(Relacion relacion1: relaciones) {
+                if( relacion1.getElemento1().equals(nInicial) ) {
+                    for(Relacion relacion2: relaciones ) {
+                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
+                            for(Relacion relacion3 : relaciones){
+                                if(relacion3.getElemento1().equals(relacion2.getElemento2())){
+                                    for(Relacion relacion4 : relaciones){
+                                        if(relacion4.getElemento1().equals(relacion3.getElemento2())){
+                                            for(Relacion relacion5 : relaciones){
+                                                if(relacion5.getElemento1().equals(relacion3.getElemento2()) 
+                                                        && relacion5.equals(nFinal)){
+                                                    String str = nInicial + " - " 
+                                                    + relacion1.getElemento2() + " - "
+                                                    + relacion2.getElemento2() + " - "
+                                                    + relacion3.getElemento2() + " - "
+                                                    + relacion4.getElemento2() + " - "
+                                                    + relacion5.getElemento2() + " - ";
+                                                    r.add(str); 
+                                                }
+                                            }
+                                        }
+                                    }                                
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         
