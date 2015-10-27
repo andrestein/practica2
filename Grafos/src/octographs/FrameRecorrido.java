@@ -16,6 +16,7 @@ import javax.swing.text.Document;
 /**
  *
  * @author audoban
+ * @author andres granda
  */
 public class FrameRecorrido extends javax.swing.JFrame {
 

@@ -7,7 +7,8 @@ package octographs;
 
 /**
  *
- * @author Sebastian Anderson
+ * @author audoban
+ * @author Andres piedrahita
  */
 public class UI extends javax.swing.JPanel
 {

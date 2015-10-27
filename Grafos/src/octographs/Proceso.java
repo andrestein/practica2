@@ -196,18 +196,5 @@ public class Proceso {
         } else {
             return r;
         }
-    }
-
-    // recorridos de longitud 1
-    public ArrayList<Elemento> recorridoL1(Elemento elemento) {
-        int i = elementos.indexOf(elemento);
-        ArrayList<Elemento> lista = new ArrayList<>();
-
-        for (int j = 0; j < ORDEN; j++) {
-            if (matrizAdyacencia[i][j] == 1) {
-                lista.add(elementos.get(j));
-            }
-        }
-        return lista;
-    }
+    }   
 }
