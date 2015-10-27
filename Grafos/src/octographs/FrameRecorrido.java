@@ -80,7 +80,7 @@ public class FrameRecorrido extends javax.swing.JFrame {
         jLabel3.setText("Longitud:");
         panel.add(jLabel3);
 
-        spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
+        spinLongitud.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
         panel.add(spinLongitud);
         panel.add(filler1);
 
