@@ -187,7 +187,7 @@ public class FrameRecorrido extends javax.swing.JFrame {
                 s.append("\n");
                 doc.insertString(0, s.toString(), null);
             }
-            doc.insertString(0, "# Numero de recorridos: " + list.size(), null);
+            doc.insertString(0, "# Numero de recorridos: " + list.size() + "\n", null);
         } catch (BadLocationException ex) {
             Logger.getLogger(FrameRecorrido.class.getName()).log(Level.SEVERE, null, ex);
         }
