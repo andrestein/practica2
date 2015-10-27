@@ -7,7 +7,6 @@ package octographs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
@@ -86,20 +85,18 @@ public class Proceso {
 
         LinkedList<String> r = new LinkedList<>();
         if (longitud == 1) {
-            for(Relacion relacion1:relaciones){
-                    if(relacion1.getElemento1().equals(nInicial) && relacion1.getElemento2().equals(nFinal)){
-                        r.add(nInicial.getNombre() + " - "
-                                + nFinal.getNombre());
-                    }                
-                }            
-            }
-        else if (longitud == 2) {
-            for(Relacion relacion1: relaciones) {
-                if( relacion1.getElemento1().equals(nInicial) ){
-                    for(Relacion relacion2: relaciones ) {
-                        if( relacion2.getElemento1().equals(relacion1.getElemento2()) 
-                                && relacion2.getElemento2().equals(nFinal) ) 
-                        {
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial) && relacion1.getElemento2().equals(nFinal))
+                    r.add(nInicial.getNombre() + " - "
+                        + nFinal.getNombre());
+        
+        } else if (longitud == 2) {
+            for (Relacion relacion1 : relaciones)
+                if (relacion1.getElemento1().equals(nInicial))
+                    
+                    for (Relacion relacion2 : relaciones)
+                        if (relacion2.getElemento1().equals(relacion1.getElemento2())
+                            && relacion2.getElemento2().equals(nFinal)) {
                             String str = nInicial + " - "
                                 + relacion1.getElemento2() + " - "
                                 + relacion2.getElemento2();
@@ -109,14 +106,13 @@ public class Proceso {
         } else if (longitud == 3) {
             for (Relacion relacion1 : relaciones)
                 if (relacion1.getElemento1().equals(nInicial))
-                    
+
                     for (Relacion relacion2 : relaciones)
                         if (relacion2.getElemento1().equals(relacion1.getElemento2()))
-                            
+
                             for (Relacion relacion3 : relaciones)
                                 if (relacion3.getElemento1().equals(relacion2.getElemento2())
-                                    && relacion3.getElemento2().equals(nFinal)) 
-                                {
+                                    && relacion3.getElemento2().equals(nFinal)) {
                                     String str = nInicial + " - "
                                         + relacion1.getElemento2() + " - "
                                         + relacion2.getElemento2() + " - "
@@ -127,17 +123,16 @@ public class Proceso {
         } else if (longitud == 4) {
             for (Relacion relacion1 : relaciones)
                 if (relacion1.getElemento1().equals(nInicial))
-                    
+
                     for (Relacion relacion2 : relaciones)
                         if (relacion2.getElemento1().equals(relacion1.getElemento2()))
-                            
+
                             for (Relacion relacion3 : relaciones)
                                 if (relacion3.getElemento1().equals(relacion2.getElemento2()))
-                                    
+
                                     for (Relacion relacion4 : relaciones)
                                         if (relacion4.getElemento1().equals(relacion3.getElemento2())
-                                            && relacion4.getElemento2().equals(nFinal)) 
-                                        {
+                                            && relacion4.getElemento2().equals(nFinal)) {
                                             String str = nInicial + " - "
                                                 + relacion1.getElemento2() + " - "
                                                 + relacion2.getElemento2() + " - "
@@ -145,23 +140,23 @@ public class Proceso {
                                                 + relacion4.getElemento2();
                                             r.add(str);
                                         }
+            
         } else if (longitud == 5)
             for (Relacion relacion1 : relaciones)
                 if (relacion1.getElemento1().equals(nInicial))
-                    
+
                     for (Relacion relacion2 : relaciones)
                         if (relacion2.getElemento1().equals(relacion1.getElemento2()))
-                            
+
                             for (Relacion relacion3 : relaciones)
                                 if (relacion3.getElemento1().equals(relacion2.getElemento2()))
-                                    
+
                                     for (Relacion relacion4 : relaciones)
                                         if (relacion4.getElemento1().equals(relacion3.getElemento2()))
-                                            
+
                                             for (Relacion relacion5 : relaciones)
                                                 if (relacion5.getElemento1().equals(relacion4.getElemento2())
-                                                    && relacion5.getElemento2().equals(nFinal)) 
-                                                {
+                                                    && relacion5.getElemento2().equals(nFinal)) {
                                                     String str = nInicial + " - "
                                                         + relacion1.getElemento2() + " - "
                                                         + relacion2.getElemento2() + " - "
