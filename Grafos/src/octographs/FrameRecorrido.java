@@ -112,8 +112,8 @@ public class FrameRecorrido extends javax.swing.JFrame {
         Elemento i = (Elemento) cmbInicial.getSelectedItem();
         Elemento f = (Elemento) cmbFinal.getSelectedItem();
         int longitud = (Integer) spinLongitud.getValue();
-        List<StringBuilder> list = proceso.recorridos(i, f, longitud);
-        setRecorridos(list);
+        String r = proceso.recorridos(i, f, longitud);
+        textSalida.setText(r);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     /**
