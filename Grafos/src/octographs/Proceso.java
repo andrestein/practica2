@@ -91,21 +91,18 @@ public class Proceso {
     // No es necesario añadir saltos de linea, ya se hace automaticamente.
     // Retorne null para cuando no hayan caminos.
     public LinkedList<String> recorridos(Elemento nInicial, Elemento nFinal, int longitud) {
-        long[][] mn = adyPotencia(longitud);
-        int indiceI = elementos.indexOf(nInicial);
-        int indiceF = elementos.indexOf(nFinal);
-        long nCaminos = mn[indiceI][indiceF];
-        long[][] MA = matrizAdyacencia.clone();
-       
-        ArrayList<Elemento> recorrido = new ArrayList<>();
-        ArrayList<ArrayList> listasR = new ArrayList<>();
+        
         LinkedList<String> r = new LinkedList<>();
      
-        recorrido = recorridoL1(elementos.get(indiceI));
+        
 
         if (longitud == 1) {
-            if (recorrido.indexOf(nFinal) != -1) {
-                r.add(nInicial.getNombre() + " - " + nFinal.getNombre());
+            for(int i =0; i < relaciones.size();i++){
+                for(int j =0; j < relaciones.size();j++){            
+                    if( relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal)){
+                        r.add(nInicial.getNombre()+" - "+ nFinal.getNombre());
+                    }                
+                }            
             }
         }else if (longitud == 2) {
             for(Relacion relacion1: relaciones) {
@@ -118,6 +115,25 @@ public class Proceso {
                                     + relacion1.getElemento2() + " - "
                                     + relacion2.getElemento2();
                             r.add(str);
+                        }
+                    }
+                }
+            }
+        }else if(longitud == 3){
+            for(Relacion relacion1: relaciones) {
+                if( relacion1.getElemento1().equals(nInicial) ) {
+                    for(Relacion relacion2: relaciones ) {
+                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
+                            for(Relacion relacion3 : relaciones){
+                                if(relacion3.getElemento1().equals(relacion2.getElemento2()) 
+                                        && relacion3.getElemento2().equals(nFinal)){
+                                   String str = nInicial + " - " 
+                                    + relacion1.getElemento2() + " - "
+                                    + relacion2.getElemento2() + " - "
+                                    + relacion3.getElemento2();
+                                    r.add(str); 
+                                }
+                            }
                         }
                     }
                 }
