@@ -90,41 +90,41 @@ public class Proceso {
     // Formatee cada recorrido de esta manera a-b-c-d donde a,b,c,d son nodos
     // No es necesario añadir saltos de linea, ya se hace automaticamente.
     // Retorne null para cuando no hayan caminos.
-    public LinkedList<StringBuilder> recorridos(Elemento nInicial, Elemento nFinal, int longitud) {
+    public LinkedList<String> recorridos(Elemento nInicial, Elemento nFinal, int longitud) {
         long[][] mn = adyPotencia(longitud);
         int indiceI = elementos.indexOf(nInicial);
         int indiceF = elementos.indexOf(nFinal);
         long nCaminos = mn[indiceI][indiceF];
         long[][] MA = matrizAdyacencia.clone();
-        ArrayList<Elemento> listaI = new ArrayList<Elemento>();
-        ArrayList<Elemento> listaF = new ArrayList<Elemento>();
-        ArrayList<Elemento> recorrido = new ArrayList<Elemento>();
+       
+        ArrayList<Elemento> recorrido = new ArrayList<>();
         ArrayList<ArrayList> listasR = new ArrayList<>();
-        LinkedList<StringBuilder> r = new LinkedList<>();
-        listaI = recorridoL1(nInicial);
-        listaF = recorridoL1(nFinal);
-
-        
-        listasR.add(recorridoL1(elementos.get(indiceI)));
+        LinkedList<String> r = new LinkedList<>();
+     
+        recorrido = recorridoL1(elementos.get(indiceI));
 
         if (longitud == 1) {
-            if (listaI.indexOf(nFinal) != -1) {
-                r.add(new StringBuilder(nInicial.getNombre() + " - " + nFinal.getNombre()));
+            if (recorrido.indexOf(nFinal) != -1) {
+                r.add(nInicial.getNombre() + " - " + nFinal.getNombre());
             }
         }else if (longitud == 2) {
-            int nI = indiceI;
-            for (int j = 0; j < ORDEN; j++) {
-                if (MA[nI][j] == 1) {
-                    //MA[nI][j] = 0;
-                    recorrido = listasR.get(j);
-                    if (recorrido.indexOf(nFinal) != -1) {
-                        r.add(new StringBuilder(nInicial.getNombre() + " - "
-                                + recorrido.get(j).getNombre() + " - " + nFinal.getNombre()));
+            for(Relacion relacion1: relaciones) {
+                if( relacion1.getElemento1().equals(nInicial) ) {
+                    for(Relacion relacion2: relaciones ) {
+                        if( relacion2.getElemento1().equals(relacion1.getElemento2()) 
+                                && relacion2.getElemento2().equals(nFinal) ) 
+                        {
+                            String str = nInicial + " - " 
+                                    + relacion1.getElemento2() + " - "
+                                    + relacion2.getElemento2();
+                            r.add(str);
+                        }
                     }
                 }
             }
         }
 
+        
         if (r.isEmpty() == true) {
             return null;
         } else {
@@ -135,7 +135,7 @@ public class Proceso {
     // recorridos de longitud 1
     public ArrayList<Elemento> recorridoL1(Elemento elemento) {
         int i = elementos.indexOf(elemento);
-        ArrayList<Elemento> lista = new ArrayList<Elemento>();
+        ArrayList<Elemento> lista = new ArrayList<>();
 
         for (int j = 0; j < ORDEN; j++) {
             if (matrizAdyacencia[i][j] == 1) {
@@ -144,5 +144,4 @@ public class Proceso {
         }
         return lista;
     }
-
 }
