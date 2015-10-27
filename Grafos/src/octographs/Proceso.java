@@ -94,15 +94,14 @@ public class Proceso {
         
         LinkedList<String> r = new LinkedList<>();
         if (longitud == 1) {
-            for(int i = 0; i < relaciones.size(); i++){
-                for(int j = 0; j < relaciones.size(); j++){            
-                    if(relaciones.get(i).getElemento1().equals(nInicial) && relaciones.get(j).equals(nFinal)){
+            for(Relacion relacion1:relaciones){
+                    if(relacion1.getElemento1().equals(nInicial) && relacion1.getElemento2().equals(nFinal)){
                         r.add(nInicial.getNombre() + " - "
                                 + nFinal.getNombre());
                     }                
                 }            
             }
-        }else if (longitud == 2) {
+        else if (longitud == 2) {
             for(Relacion relacion1: relaciones) {
                 if( relacion1.getElemento1().equals(nInicial) ){
                     for(Relacion relacion2: relaciones ) {
