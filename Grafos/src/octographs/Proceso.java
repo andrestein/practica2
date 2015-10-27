@@ -93,9 +93,6 @@ public class Proceso {
     public LinkedList<String> recorridos(Elemento nInicial, Elemento nFinal, int longitud) {
         
         LinkedList<String> r = new LinkedList<>();
-     
-        
-
         if (longitud == 1) {
             for(int i =0; i < relaciones.size();i++){
                 for(int j =0; j < relaciones.size();j++){            
@@ -119,7 +116,7 @@ public class Proceso {
                     }
                 }
             }
-        }else if(longitud == 3){
+        }else if(longitud == 3) {
             for(Relacion relacion1: relaciones) {
                 if( relacion1.getElemento1().equals(nInicial) ) {
                     for(Relacion relacion2: relaciones ) {
@@ -132,6 +129,30 @@ public class Proceso {
                                     + relacion2.getElemento2() + " - "
                                     + relacion3.getElemento2();
                                     r.add(str); 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }else if(longitud == 4) {
+            for(Relacion relacion1: relaciones) {
+                if( relacion1.getElemento1().equals(nInicial) ) {
+                    for(Relacion relacion2: relaciones ) {
+                        if( relacion2.getElemento1().equals(relacion1.getElemento2())){
+                            for(Relacion relacion3 : relaciones){
+                                if(relacion3.getElemento1().equals(relacion2.getElemento2())) {
+                                    for(Relacion relacion4: relaciones ) {
+                                        if(relacion4.getElemento1().equals(relacion3.getElemento2()) 
+                                        && relacion4.getElemento2().equals(nFinal)) {
+                                        String str = nInicial + " - " 
+                                            + relacion1.getElemento2() + " - "
+                                            + relacion2.getElemento2() + " - "
+                                            + relacion3.getElemento2() + " - "
+                                            + relacion4.getElemento2();
+                                            r.add(str); 
+                                        }
+                                    }
                                 }
                             }
                         }

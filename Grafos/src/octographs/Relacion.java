@@ -32,7 +32,7 @@ public class Relacion
     @Override
     public String toString()
     {
-        return "(" + elemento1 + ", " + elemento2 + ")";
+        return elemento1 + " - " + elemento2;
     }
 
     @Override
