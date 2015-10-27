@@ -112,7 +112,7 @@ public class FrameRecorrido extends javax.swing.JFrame {
         Elemento i = (Elemento) cmbInicial.getSelectedItem();
         Elemento f = (Elemento) cmbFinal.getSelectedItem();
         int longitud = (Integer) spinLongitud.getValue();
-        List<StringBuilder> list = proceso.recorridos(i, f, longitud);
+        List<String> list = proceso.recorridos(i, f, longitud);
         setRecorridos(list);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
@@ -170,7 +170,7 @@ public class FrameRecorrido extends javax.swing.JFrame {
         cmbFinal.setModel(model2);
     }
 
-    private void setRecorridos(List<StringBuilder> list) {
+    private void setRecorridos(List<String> list) {
         try {
             Document doc = textSalida.getDocument();
             doc.remove(0, doc.getLength());
@@ -180,7 +180,7 @@ public class FrameRecorrido extends javax.swing.JFrame {
                         + (Integer)spinLongitud.getValue(), null);
                 return;
             }
-            for (StringBuilder str : list) {
+            for (String str : list) {
                 StringBuilder s = new StringBuilder(str);
                 s.insert(0, "* ");
                 s.append("\n");
