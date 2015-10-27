@@ -112,10 +112,11 @@ public class Proceso {
                 if( relacion1.getElemento1().equals(nInicial) ) {
                     for(Relacion relacion2: relaciones ) {
                         if( relacion2.getElemento1().equals(relacion1.getElemento2()) 
-                                && relacion2.getElemento2().equals(nFinal) ) {
+                                && relacion2.getElemento2().equals(nFinal) ) 
+                        {
                             String str = nInicial + " - " 
                                     + relacion1.getElemento2() + " - "
-                                    + relacion1.getElemento2();
+                                    + relacion2.getElemento2();
                             r.add(str);
                         }
                     }
